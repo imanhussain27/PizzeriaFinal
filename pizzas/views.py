@@ -32,7 +32,7 @@ def new_pizza(request):
 
         if form.is_valid():
             new_pizza = form.save(commit=False)
-            new_pizza.owner = request.user
+            #new_pizza.owner = request.user
             form.save()
         
 
@@ -52,7 +52,7 @@ def new_topping(request, pizza_id):
         if form.is_valid():
             new_topping = form.save(commit=False)
             new_topping.pizza = pizza
-            new_topping.owner = request.user 
+            #new_topping.owner = request.user 
             new_topping.save()
 
             return redirect('pizzas:pizza', pizza_id=pizza_id)
@@ -66,8 +66,8 @@ def edit_topping(request, topping_id):
     pizza = topping.pizza
 
 
-    if pizza.owner != request.user:
-        raise Http404
+    #if pizza.owner != request.user:
+        #raise Http404
     if request.method != 'POST':
         form = ToppingForm(instance=topping)
     else:
@@ -94,7 +94,7 @@ def new_comment(request, pizza_id):
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.pizza = pizza
-            new_comment.owner = request.user
+            #new_comment.owner = request.user
             new_comment.save()
             return redirect('pizzas:pizza', pizza_id=pizza_id)
 
